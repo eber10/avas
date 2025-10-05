@@ -1,0 +1,39 @@
+{
+  "title": "NAVAS",
+  "description": "",
+  "social_links": [
+    {
+      "title": "Whatsapp ",
+      "link": "https://api.whatsapp.com/send/?phone=51983624649&text&type=phone_number&app_absent=0"
+    },
+    {
+      "title": "Instagram",
+      "link": "https://www.instagram.com/NavasTacna/"
+    },
+    {
+      "title": "Facebook",
+      "link": "https://www.facebook.com/inmobiliaria.navas/"
+    },
+    {
+      "title": "Tiktok",
+      "link": "https://www.tiktok.com/@navasinmobiliaria"
+    }
+  ],
+  "nav": [
+    {
+      "title": "Proyectos",
+      "link": "/#proyectos"
+    },
+    {
+      "title": "Blog",
+      "link": "/#blog"
+    },
+    {
+      "title": "Ayuda",
+      "link": "/#ayuda"
+    }
+  ],
+  "mi_cuenta": {
+    "title": "Mi cuenta"
+  }
+}

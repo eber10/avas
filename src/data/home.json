@@ -1,0 +1,33 @@
+{
+  "hero_title": "NAVAS landing page",
+  "hero_content": "<p><strong>Invierte fácil, vive seguro hoy</strong> ¡Te ayudamos a encontrar tu lote de inversión!</p><p> Puedes contactarnos :</p>",
+  "services_title": "Nuestros servicios ",
+  "services_content": "<p>Elaboración, supervisión y construcción de proyectos inmobiliarios": [
+    {
+      "title": "Compra y venta de terrenos y casas",
+      "description": "Descripción del servicio 1"
+    },
+    {
+      "title": "Saneamiento de terrenos",
+      "description": "Descripción del servicio 2"
+    },
+    {
+      "title": "Habilitaciones urbanas",
+      "description": "Descripción del servicio 3"
+    },
+    {
+      "title": "Elaboración de planos",
+      "description": "Descripción del servicio 4"
+    },
+    {
+      "title": "Expedientes Técnicos",
+      "description": "Descripción del servicio 5"
+    },
+    {
+      "title": "Venta de casas",
+      "description": "Descripción del servicio 6"
+    }
+  ]
+
+
+}
