@@ -21,16 +21,12 @@
   ],
   "nav": [
     {
-      "title": "Proyectos",
-      "link": "/#proyectos"
+      "title": "Nosotros",
+      "link": "/#Nosotros"
     },
     {
-      "title": "Blog",
-      "link": "/#blog"
-    },
-    {
-      "title": "Ayuda",
-      "link": "/#ayuda"
+      "title": "Proyectos en venta",
+      "link": "/#Proyectos en venta"
     }
   ],
   "mi_cuenta": {

@@ -1,0 +1,23 @@
+---
+import Image from "astro/components/Image.astro";// Importamos el componente Image de Astro
+const { title, image, description, width, height } = Astro.props; // Definimos los props (propiedades) que esta tarjeta debe recibir
+const imgAlt = title || 'Imagen de Proyecto Inmobiliario'; // Lógica de fallback para el texto alternativo (alt)
+---
+<div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col transition-shadow hover:shadow-2xl">
+    <div class="h-48 w-full relative">
+        <Image 
+            src={image} {/*Recibe la imagen importada desde index.astro */}
+            alt={imgAlt} 
+            width={width}  {/*Dimensiones para optimización (importadas desde index.astro) */}              
+            height={height}
+            class="w-full h-full object-cover" {/*Asegura que la imagen cubra el contenedor sin distorsión */}
+        />
+    </div>
+    <div class="p-4 flex flex-col flex-grow">
+        <h3 class="text-xl font-semibold mb-2 text-[#143663]">{title || 'Nombre del Proyecto'}</h3>
+        <p class="text-gray-600 mb-4 flex-grow">{description || 'Descripción breve del proyecto, lotes o ubicación.'}</p>
+        <div class="bg-white h-12 w-full rounded-lg border border-gray-300 flex items-center justify-center mt-4 cursor-pointer hover:bg-gray-50 transition-colors">
+            <span class="text-sm font-medium text-gray-500">Más detalles aquí</span>
+        </div>
+    </div>
+</div>

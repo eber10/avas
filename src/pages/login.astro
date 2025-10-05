@@ -1,9 +1,9 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import LayoutLogin from "../layouts/LayoutLogin.astro"; 
 import LoginCard from "../components/LoginCard.astro";
 import global_settings from "../data/global_settings.json";
 ---
 
-<Layout title={global_settings.title}>
-    <LoginCard />
-</Layout>
+<LayoutLogin title="Mi Cuenta">
+     <LoginCard />
+</LayoutLogin>

@@ -1,0 +1,73 @@
+---
+import Image from "astro/components/Image.astro"; // Importamos el componente Image de Astro para los íconos
+import phoneIcon from "../assets/images/phone.png"; // Importamos los íconos desde la carpeta src/assets/images/
+import whatsappIcon from "../assets/images/whatsapp.png"; 
+import facebookIcon from "../assets/images/facebook.png"; 
+import instagramIcon from "../assets/images/instagram.png"; 
+import youtubeIcon from "../assets/images/tiktok.png"; //cambiar el ícono de tiktok
+const ICON_SMALL_WIDTH = 18;// Definiciones de dimensiones
+const ICON_SOCIAL_WIDTH = 40;
+const primaryColor = '#143663'; // Definir el color de fondo azul oscuro principal
+const secondaryColor = '#f7931e'; // Color naranja de acento
+---
+<footer class="py-8 text-white" style={`background-color: ${primaryColor};`}>
+    <div class="bs-container">
+        {/* Contenido Principal del Footer: Contacto, Dirección, Redes */}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 mb-6 border-b border-gray-600">
+            {/* Columna 1: Contacto */}
+            <div class="flex flex-col space-y-4">
+                <div class="flex items-center space-x-3 mb-2">
+                    <span class="block w-1.5 h-6" style={`background-color: ${secondaryColor};`}></span> {/* Línea naranja */}
+                    <h3 class="text-lg font-bold">Contacto</h3>
+                </div>
+                {/* Teléfono fijo/Móvil 1 */}
+                <div class="flex items-center space-x-3 text-gray-200">
+                    <Image src={phoneIcon} alt="Icono de teléfono fijo" width={ICON_SMALL_WIDTH} height={ICON_SMALL_WIDTH} class="w-[18px] h-[18px] flex-shrink-0" />
+                    <span class="font-medium">983 624 649</span>
+                </div>
+                {/* WhatsApp / Móvil 2 */}
+                <div class="flex items-center space-x-3 text-gray-200">
+                    <Image src={whatsappIcon} alt="Icono de WhatsApp" width={ICON_SMALL_WIDTH} height={ICON_SMALL_WIDTH} class="w-[18px] h-[18px] flex-shrink-0" />
+                    <span class="font-medium">+51 983 624 649</span>
+                </div>
+            </div>
+            {/* Columna 2: Dirección */}
+            <div class="flex flex-col space-y-4">
+                <div class="flex items-center space-x-3 mb-2">
+                    <span class="block w-1.5 h-6" style={`background-color: ${secondaryColor};`}></span> {/* Línea naranja */}
+                    <h3 class="text-lg font-bold">Dirección</h3>
+                </div>
+                <div class="flex items-start space-x-3 text-gray-200">
+                    {/* Icono de ubicación (SVG inline) */}
+                    <svg class="w-[18px] h-[18px] text-white mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <p class="text-sm font-light">
+                        CALLE ZELA #873, OFICINA 101 23000
+                        <br>Tacna, Peru
+                    </p>
+                </div>
+            </div>
+            {/* Columna 3: Redes Sociales */}
+            <div class="flex flex-col space-y-4">
+                <h3 class="text-lg font-bold mb-2">Síguenos en nuestras redes sociales</h3>
+                <div class="flex space-x-4">
+                    <a href="#" target="_blank" aria-label="Facebook">
+                        <Image src={facebookIcon} alt="Facebook" width={ICON_SOCIAL_WIDTH} height={ICON_SOCIAL_WIDTH} class="w-10 h-10 hover:opacity-80 transition-opacity" />
+                    </a>
+                    <a href="#" target="_blank" aria-label="Instagram">
+                        <Image src={instagramIcon} alt="Instagram" width={ICON_SOCIAL_WIDTH} height={ICON_SOCIAL_WIDTH} class="w-10 h-10 hover:opacity-80 transition-opacity" />
+                    </a>
+                    <a href="#" target="_blank" aria-label="YouTube">
+                        <Image src={youtubeIcon} alt="YouTube" width={ICON_SOCIAL_WIDTH} height={ICON_SOCIAL_WIDTH} class="w-10 h-10 hover:opacity-80 transition-opacity" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        {/* Sección de Copyright y RUC */}
+        <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 pt-4">
+            <p class="mb-2 md:mb-0">&copy; {new Date().getFullYear()} Navas Inmobiliaria</p>
+            <p>RUC: 20574937583</p>
+        </div>
+    </div>
+</footer>

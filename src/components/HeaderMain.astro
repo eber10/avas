@@ -1,40 +1,33 @@
 ---
 import Image from "astro/components/Image.astro";
-import Logo from "../assets/images/logo.png";
-
+import Logo from "../assets/images/LogoEmpresa.png";
 const { settings } = Astro.props;
 ---
-
 <header class="wrapper bg-loop font-semibold">
-    <div class="bs-container py-6 flex justify-between items-center">
+    <div class="bs-container py-4 flex items-center justify-between">
         <a
-            class="flex xl:min-w-32 group"
+            class="flex items-center"
             href="/"
             aria-label={settings.title + " - Home"}
         >
-            <Image alt="Logo" src={Logo} height="48" width="48" />
+            <Image alt="Logo" src={Logo} height="120" width="120" />
         </a>
-        <nav class="hidden col-span-6 md:flex mx-auto self-stretch lg:gap-2">
+        <nav class="hidden md:flex items-center gap-8 mx-8">
             {
                 settings.nav.map((item) => (
-                    <a class="" href={item.link}>
+                    <a class="px-4 py-2 whitespace-nowrap" href={item.link}>
                         {item.title}
                     </a>
                 ))
             }
         </nav>
-        <a href="/login">
+        <a href="/login" class="flex-shrink-0">
             <button
                 type="button"
-                class="min-w-32
-               font-semibold
-               px-5
-               py-4
-               rounded-md
-               text-bs-foreground-light
-               text-center
-               relative
-               overflow-clip"
+                class="min-w-32 font-semibold px-6 py-3 rounded-lg 
+                       border-2 border-[#143663] text-[#143663] 
+                       hover:bg-[#143663] hover:text-white 
+                       transition-colors duration-200"
             >
                 {settings.mi_cuenta.title}
             </button>

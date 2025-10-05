@@ -1,7 +1,7 @@
 ---
 import global_settings from "../data/global_settings.json";
-import HeaderMain from "../components/HeaderMain.astro";
 import "../assets/css/global.css";
+import Footer from '../components/Footer.astro';
 
 const { title, description } = Astro.props;
 ---
@@ -24,9 +24,9 @@ const { title, description } = Astro.props;
         />
     </head>
     <body>
-        <HeaderMain settings={global_settings} />
         <main>
             <slot />
         </main>
+        <Footer />
     </body>
 </html>
