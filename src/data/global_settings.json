@@ -22,11 +22,11 @@
   "nav": [
     {
       "title": "Nosotros",
-      "link": "/#Nosotros"
+      "link": "/#nosotros" 
     },
     {
       "title": "Proyectos en venta",
-      "link": "/#Proyectos en venta"
+      "link":"/#proyectos" 
     }
   ],
   "mi_cuenta": {

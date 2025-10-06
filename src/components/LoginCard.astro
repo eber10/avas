@@ -1,104 +1,101 @@
 ---
-import Image from "astro/components/Image.astro";
-import Logo from "../assets/images/logo.png";
+const accentColor = '#143663'; 
+const inputBgColor = '#fefefe'; 
 ---
-
-<div class="text-black w-80 mx-auto my-8 p-8 rounded-xl shadow-lg text-center">
-    <form id="login-form" class="flex flex-col gap-4">
-        <Image src={Logo} alt="Logo" class="w-36 mx-auto mb-4" />
-        <h2 class="mb-6 font-bold text-xl">Mi Cuenta</h2>
-
-        <div
-            id="error-message"
-            class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4"
-        >
-            <span class="block sm:inline"></span>
-        </div>
-
-        <div
-            id="loading-message"
-            class="hidden bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded mb-4"
-        >
-            <span class="block sm:inline">Iniciando sesión...</span>
-        </div>
-
-        <div>
+{/* Contenedor de la tarjeta: Se ajustó el color del fondo a blanco para mejor contraste */}
+<div class="bg-white p-8 rounded-2xl shadow-2xl max-w-xs w-full text-center">
+    <form id="login-form" class="flex flex-col gap-6">
+        {/* Título "Iniciar Sesión" con color azul oscuro y fuente grande */}
+        <h2 class="mb-2 font-bold text-xl" style={`color: ${accentColor};`}>Iniciar Sesión</h2> 
+        {/* Mensajes de error/carga (Se mantienen) */}
+            <div id="error-message" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-sm">
+                <span class="block sm:inline"></span>
+            </div>
+            <div id="loading-message" class="hidden bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded mb-4 text-sm">
+                <span class="block sm:inline">Iniciando sesión...</span>
+            </div>
+        {/* CAMPO USUARIO */}
+        <div class="text-left">
+            <label class="block text-gray-700 font-medium mb-1">Usuario</label>
             <input
                 type="text"
                 name="username"
                 placeholder="Usuario"
                 required
-                class="w-full p-3 rounded-md bg-beige-100 text-gray-800 text-base border-s-stone-600 border-1"
+                class="w-full p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#143663] text-gray-800"
+                style={`background-color: ${inputBgColor};`}
             />
         </div>
-        <div>
+        {/* CAMPO CONTRASEÑA */}
+        <div class="text-left">
+            <label class="block text-gray-700 font-medium mb-1">Contraseña</label>
             <input
                 type="password"
                 name="password"
-                placeholder="Contraseña"
+                placeholder="********"
                 required
-                class="w-full p-3 rounded-md bg-beige-200 text-gray-800 text-base border-1 outline-amber-950"
+                class="w-full p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#143663] text-gray-800"
+                style={`background-color: ${inputBgColor};`}
             />
         </div>
+        
+        {/* BOTÓN INGRESAR */}
         <button
             type="submit"
             id="submit-button"
-            class="mt-2 w-full p-3 bg-beige-100 text-black font-bold rounded-md hover:bg-[#e5e5c0] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            class="mt-4 w-full p-3 text-white font-bold rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-lg shadow-md"
+            style={`background-color: ${accentColor};`}
         >
-            INICIAR SESIÓN
+        Ingresar
         </button>
     </form>
-
+    
+    {/* SCRIPTS DE JAVASCRIPT */}
     <script type="module">
-        const form = document.getElementById("login-form");
-        const submitButton = document.getElementById("submit-button");
-        const errorMessage = document.getElementById("error-message");
-        const loadingMessage = document.getElementById("loading-message");
+    const form = document.getElementById("login-form");
+    const submitButton = document.getElementById("submit-button");
+    const errorMessage = document.getElementById("error-message");
+    const loadingMessage = document.getElementById("loading-message");
+    function showError(message) {
+        errorMessage.querySelector("span").textContent = message;
+        errorMessage.classList.remove("hidden");
+        loadingMessage.classList.add("hidden");
+    }
 
-        function showError(message) {
-            errorMessage.querySelector("span").textContent = message;
-            errorMessage.classList.remove("hidden");
-            loadingMessage.classList.add("hidden");
-        }
+    function showLoading() {
+        loadingMessage.classList.remove("hidden");
+        errorMessage.classList.add("hidden");
+    }
 
-        function showLoading() {
-            loadingMessage.classList.remove("hidden");
-            errorMessage.classList.add("hidden");
-        }
+    function hideMessages() {
+        errorMessage.classList.add("hidden");
+        loadingMessage.classList.add("hidden");
+    }
 
-        function hideMessages() {
-            errorMessage.classList.add("hidden");
-            loadingMessage.classList.add("hidden");
-        }
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        submitButton.disabled = true;
+        showLoading();
+        try {
+            const formData = new FormData(form);
+            const res = await fetch("http://localhost:4000/auth", {
+                method: "POST",
+                body: formData,
+            });
 
-        form.addEventListener("submit", async (e) => {
-            e.preventDefault();
-
-            submitButton.disabled = true;
-            showLoading();
-
-            try {
-                const formData = new FormData(form);
-
-                const res = await fetch("http://localhost:4000/auth", {
-                    method: "POST",
-                    body: formData,
-                });
-
-                const data = await res.json();
-
-                if (data.success) {
-                    hideMessages();
-                    window.location.href = data.redirectUrl;
-                } else {
-                    showError(data.message || "Error al iniciar sesión");
-                }
-            } catch (error) {
-                console.error("Error de conexión:", error);
-                showError("No se pudo conectar al servidor.");
-            } finally {
-                submitButton.disabled = false;
+            const data = await res.json();
+            if (data.success) {
+                hideMessages();
+                window.location.href = data.redirectUrl;
+            } else {
+                showError(data.message || "Error al iniciar sesión");
             }
-        });
+        } catch (error) {
+            console.error("Error de conexión:", error);
+            showError("No se pudo conectar al servidor.");
+        } finally {
+            submitButton.disabled = false;
+        }
+    });
     </script>
 </div>

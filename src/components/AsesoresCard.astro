@@ -1,8 +1,8 @@
 ---
 import Image from "astro/components/Image.astro"; 
-const { title, person, image, width, height } = Astro.props; //Props que recibe la tarjeta (de index.astro)
-const imgAlt = `Asesor de Inversión: ${person || 'Asesor Navas Inmobiliaria'}`; //Texto alternativo(alt) de la imagen
-const gradientColor = 'rgba(20, 54, 99, 0.9)'; //Color azul oscuro para el degradado(similar al #143663)
+const { title, person, image, width, height } = Astro.props; 
+const imgAlt = `Asesor de Inversión: ${person || 'Asesor Navas Inmobiliaria'}`; 
+const gradientColor = 'rgba(20, 54, 99, 0.9)'; 
 ---
 <div class="bg-white rounded-xl shadow-xl overflow-hidden relative">
     <div class="w-full relative">

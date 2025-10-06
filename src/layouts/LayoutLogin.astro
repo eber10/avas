@@ -1,41 +1,121 @@
 ---
 import global_settings from "../data/global_settings.json";
 import "../assets/css/global.css";
+import Image from "astro/components/Image.astro";
+import LogoNavas from "../assets/images/LogoNavas.png";
+import FotoLogin from "../assets/images/FotoLogin.jpg";
+
 const { title, description } = Astro.props;
+
+const backgroundStyle = `
+  background-image: url(${FotoLogin.src});
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+`;
 ---
 
 <html lang="es">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width" />
-        <title>{title ?? global_settings.title} - Mi Cuenta</title>
-        <link rel="icon" type="image/svg+xml" href="/favicon.png" />
-        <link rel="manifest" href="/manifest.json" />
-        <meta
-        name="description"
-        content={description ?? global_settings.description}
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title ?? global_settings.title} - Mi Cuenta</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta
+      name="description"
+      content={description ?? global_settings.description}
+    />
+
+    <style>
+      html, body {
+        height: 100%;
+        overflow: hidden; 
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        min-height: 100vh;
+      }
+
+      /* Fondo oscuro semitransparente */
+      body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: -1;
+      }
+
+      /* Header con color azul fijo */
+      header {
+        background-color: #143663; /* 🔵 Azul oscuro directo */
+        color: white;
+        padding: 1rem 1.5rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        flex-shrink: 0;
+      }
+
+      .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start; /* ⬅️ Todo hacia la izquierda */
+        gap: 1rem;
+      }
+
+      .header-title {
+        font-size: 1.1rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      main {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+
+      /*  Responsivo */
+      @media (max-width: 600px) {
+        .header-container {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.4rem;
+        }
+        .header-title {
+          font-size: 0.95rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body style={`${backgroundStyle}`}>
+    <header>
+      <div class="header-container">
+        <Image 
+          src={LogoNavas} 
+          alt="Logo Navas Inmobiliaria" 
+          width={140} 
+          height={40} 
+          class="h-10 w-auto" 
         />
-        {/* Estilo para centrar la tarjeta de login vertical y horizontalmente */}
-        <style>
-            body {
-                background-color: #fcf8ee; /* Fondo de color crema como en tu diseño */
-                min-height: 100vh; 
-                display: flex;
-                flex-direction: column;
-                justify-content: center; /* Centra verticalmente */
-                align-items: center; /* Centra horizontalmente */
-            }
-            main {
-                flex-grow: 1;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-        </style>
-    </head>
-        <body>
-            <main>
-                <slot />
-            </main>
-        </body>
+        <span class="header-title">Navas Inmobiliaria EIRL</span>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+  </body>
 </html>
